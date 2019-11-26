@@ -1,18 +1,17 @@
 default: all
 
-
 all: kitchen
 
-xenial64-vbox.box: template.json scripts/provision.sh http/preseed.cfg
+ubuntu-1604-vbox.box: template.json scripts/provision.sh http/preseed.cfg
 	packer validate template.json
-	packer build -force -only=xenial64-vbox template.json
+	packer build -force -only=ubuntu-1604-vbox template.json
 
-kitchen-vbox: xenial64-vbox.box
+kitchen-vbox: ubuntu-1604-vbox.box
 	bundle exec kitchen test vbox
 
 kitchen: kitchen-vbox 
 
 .PHONY: clean
 clean:
-	-vagrant box remove -f xenial64 --provider virtualbox
+	-vagrant box remove -f ubuntu-1604 --provider virtualbox
 	-rm -fr output-*/ *.box
