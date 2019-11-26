@@ -10,7 +10,6 @@ xenial64-vbox.box: template.json scripts/provision.sh http/preseed.cfg
 kitchen-vbox: xenial64-vbox.box
 	bundle exec kitchen test vbox
 
-k
 kitchen: kitchen-vbox 
 
 .PHONY: clean
